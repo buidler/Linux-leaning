@@ -11,8 +11,8 @@ linux命令大部分没有顺序
 - l：软链接文件
 
 #### b.文件用户
-- u：所有者
-- g：所属组
+- u：所有者（创建文件的人）
+- g：所属组（创建者的缺省组）
 - o：其他人
 
 #### c.文件权限
@@ -77,7 +77,7 @@ linux命令大部分没有顺序
 - tail -n 行号 文件名：显示一个文件的后行，没有-n 行号，默认显示后10行
 - tail -f：动态显示文件尾的内容
 
-### （4）链接命令
+### （4）链接命令ln
 
 - ln -s 源文件 目标文件：创建软链接
 > 软链接相当于windows的快捷方式 ，快捷方式还要找到源文件打开。软链接文件的所有用户权限是rwx
@@ -85,3 +85,42 @@ linux命令大部分没有顺序
 - ln 源文件 目标文件：创建硬链接
 > 硬链接相比cp -p可以同步更新；源文件丢失，硬链接仍然可以使用，就像一个实时备份；硬链接和源文件的i结点一样，也正是因为i结点一样所以可以同步更新；不能跨分区；不能对目录使用
 
+## 2. 权限管理命令
+
+### （1）权限管理命令chmod（change the permissions mode of a file）
+
+1. chmod：[{ugoa} {+-=} {rwx}] 文件名或目录，a是所有人
+
+  ![微信图片_20210202092408](F:\Learning materials\Linux\一、Linux常用命令\微信图片_20210202092408.png)
+
+  ![QQ图片20210202094610](F:\Learning materials\Linux\一、Linux常用命令\QQ图片20210202094610.png)
+
+2. 权限的数字表示
+	r==4（100），w==2（010），x==1（001），rwx==4+2+1=7
+	
+	![QQ图片20210202095704](F:\Learning materials\Linux\一、Linux常用命令\QQ图片20210202095704.png)
+	
+3. chmod -R：递归修改
+
+4. file  r:cat/more/head/tail/less
+	      v:vim
+
+   ​      x: command/script
+   
+   directory  r:ls
+   
+   ​                w:touch/mkdir/rmdir/rm	
+   
+   ​                x:cd
+   
+   ![QQ图片20210202160908](F:\Learning materials\Linux\一、Linux常用命令\QQ图片20210202160908.png)
+   
+### (2)其他权限管理命令
+
+ - chown（change file ownership）用户 文件或目录：改变文件或目录的所有者
+
+ - chgrp(change file group ownership) 用户组 文件或目录：改变文件或目录的所属组
+
+ - umask（the user file-creation mask） -S：显示设置文件的缺省权限（缺省创建的文件没有可执行权限）
+   
+   ![QQ图片20210203074108](F:\Learning materials\Linux\一、Linux常用命令\QQ图片20210203074108.png)
